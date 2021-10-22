@@ -1,0 +1,39 @@
+{
+  "name": "yellowjobs-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node server.js",
+    "dev": "nodemon",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catoverse/yellowjobs-fetcher.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/catoverse/yellowjobs-fetcher/issues"
+  },
+  "homepage": "https://github.com/catoverse/yellowjobs-fetcher#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "mongoose": "^5.12.7",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.0",
+    "node-fetch": "^2.6.1",
+    "static-tweets": "0.2.7",
+    "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-express": "^4.1.6",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.0"
+  }
+}
