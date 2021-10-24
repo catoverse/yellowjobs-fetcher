@@ -1,60 +1,38 @@
 require("dotenv").config();
-
-const cron = require("node-cron");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const mongoose = require("mongoose");
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
 
-const { fetchAndSaveTweets } = require("./fetchTweets");
+const { fetchAndSaveTweets } = require("./lib/fetchTweets");
+const { connect: connectDB } = require("./lib/db");
+
 const app = express();
 
-const DB_URL = process.env.MONGO_URI;
 const PORT = process.env.PORT || 4000;
 
-const swaggerDocs = swaggerJsDoc({
-  swaggerDefinition: {
-    info: {
-      version: "1.0.0",
-      title: "YellowJobs API",
-      description: "YellowJobs API v1",
-      contact: {
-        name: "API Support",
-        url: "",
-      },
-      servers: ["http://yellowjobs.org"],
-    },
-  },
-  apis: ["routes/*.js"],
-});
 app.use(morgan(process.env.NODE_ENV == "production" ? "common" : "dev"));
 app.use(express.json());
 
 app.options("/volunteer/*", cors());
 app.use(cors());
 
-app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 console.log(
   "⚠️Starting ",
   process.env.NODE_ENV == "production" ? "prod" : "staging",
   " Environment"
 );
 
-mongoose
-  .connect(DB_URL, {
-    dbName: process.env.NODE_ENV === "production" ? "prod" : "staging",
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+connectDB()
   .then(() => {
     console.log("✅ Database Connected!");
 
     fetchAndSaveTweets();
 
-    if (process.env.NODE_ENV === "production") {
-      cron.schedule("*/5 * * * *", async () => {
+    if (
+      process.env.NODE_ENV === "production" ||
+      process.env.NODE_ENV == "staging"
+    ) {
+      setInterval(async () => {
         console.log("Fetching Tweets...");
         console.time("fetchTweets");
 
@@ -62,13 +40,7 @@ mongoose
 
         console.timeEnd("fetchTweets");
         console.log("Done Fetching Tweets!");
-      });
+      }, 3000);
     }
-
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log("🚀 Server Ready! at port:", PORT);
-    });
-    process.on("beforeExit", () => {
-      categoryController.flush();
-    });
-  });
+  })
+  .catch(console.error);
