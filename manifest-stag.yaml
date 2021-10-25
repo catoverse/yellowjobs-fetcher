@@ -44,7 +44,7 @@ spec:
             - name: BEARER_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: yellowjobs-fetcher-prod-env
+                  name: yellowjobs-fetcher-stag-env
                   key: BEARER_TOKEN
           ports:
             - containerPort: 4000
