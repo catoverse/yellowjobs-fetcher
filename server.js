@@ -40,7 +40,7 @@ connectDB()
 
         console.timeEnd("fetchTweets");
         console.log("Done Fetching Tweets!");
-      }, 3000);
+      }, 4000);
     }
   })
   .catch(console.error);
