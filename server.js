@@ -16,11 +16,11 @@ app.use(express.json());
 app.options("/volunteer/*", cors());
 app.use(cors());
 
-console.log(
-  "⚠️Starting ",
-  process.env.NODE_ENV == "production" ? "prod" : "staging",
-  " Environment"
-);
+// console.log(
+//   "⚠️Starting ",
+//   process.env.NODE_ENV == "production" ? "prod" : "staging",
+//   " Environment"
+// );
 
 connectDB()
   .then(() => {
@@ -40,7 +40,7 @@ connectDB()
 
         console.timeEnd("fetchTweets");
         console.log("Done Fetching Tweets!");
-      }, 3000);
+      }, 4000);
     }
   })
   .catch(console.error);
