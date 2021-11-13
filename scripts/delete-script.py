@@ -2,7 +2,7 @@
 from pymongo.message import update
 import datetime
 
-MONGO_URI = ""
+MONGO_URI = "mongodb+srv://admin:A5ChtjuDqxVKBQwo@cluster0.sgrlz.mongodb.net/staging?retryWrites=true&w=majority"
 
 
 def get_database():
@@ -50,4 +50,23 @@ def deleteBefore(y, m, d):
         {"tweet_id": {"$in": arr}}).deleted_count)
 
 
-deleteBefore(2021, 10, 15)
+def deleteNeedMan():
+
+    # Get the database
+    dbname = get_database()
+
+    tweetsColl = dbname['tweets']
+
+    query = {"need_manual_verification": "true"}
+    tot = tweetsColl.find({}).count()
+    varFalse = tweetsColl.find(query).count()
+
+    print("All ID count:", tot)
+    print("Ver true count:", varFalse)
+    print("remains:", tot-varFalse)
+
+    print(tweetsColl.delete_many(query).deleted_count)
+
+
+#deleteBefore(2021, 10, 25)
+deleteNeedMan()
