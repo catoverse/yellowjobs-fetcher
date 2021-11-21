@@ -2,7 +2,7 @@
 from pymongo.message import update
 import datetime
 
-MONGO_URI = "mongodb+srv://admin:A5ChtjuDqxVKBQwo@cluster0.sgrlz.mongodb.net/staging?retryWrites=true&w=majority"
+MONGO_URI = ""
 
 
 def get_database():
@@ -21,7 +21,6 @@ def get_database():
 
 
 def deleteBefore(y, m, d):
-
     # Get the database
     dbname = get_database()
 
