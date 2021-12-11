@@ -143,6 +143,7 @@
 		"Unix": ["unix"],
 		"Virtual Reality": ["vr", "virtualreality","mixedreality"],
 		"VueJS": ["vue", "vuejs"],
+		"Web3": ["blockchain","smartcontracts","smartcontract","crypto","ethereum","web3","defi"],
 		"Web Dev": ["webdev","webdevs","fullstack","js","html","css","react","node","vue","vuejs","angularjs"],	
 		"Webflow" : ["webflow"], 
 		"Webmaster": ["webmaster"],
