@@ -41,6 +41,13 @@ connectDB()
         console.timeEnd("fetchTweets");
         console.log("Done Fetching Tweets!");
       }, 3000);
+      setInterval(async () => {
+        console.log("Deleting Tweets...");
+
+        await fetchAndSaveTweets();
+
+        console.log("Done Deleting Tweets!");
+      }, 3000);
     }
   })
   .catch(console.error);
