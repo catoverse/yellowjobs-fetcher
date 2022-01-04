@@ -1,5 +1,4 @@
 
-from pymongo.message import update
 import datetime
 
 MONGO_URI = ""
@@ -57,12 +56,12 @@ def deleteNeedMan():
     tweetsColl = dbname['tweets']
 
     query = {"need_manual_verification": "true"}
-    tot = tweetsColl.find({}).count()
-    varFalse = tweetsColl.find(query).count()
+    # tot = tweetsColl.find({}).count()
+    # varFalse = tweetsColl.find(query).count()
 
-    print("All ID count:", tot)
-    print("Ver true count:", varFalse)
-    print("remains:", tot-varFalse)
+    # print("All ID count:", tot)
+    # print("Ver true count:", varFalse)
+    # print("remains:", tot-varFalse)
 
     print(tweetsColl.delete_many(query).deleted_count)
 
