@@ -17,7 +17,7 @@ const schema = new mongoose.Schema(
       enum: ["true", "false", "verified", "rejected"],
       default: "false",
     },
-
+    additionalFilters: [String],
     tweet_id: String,
     tweet_url: String,
     author_id: String,
