@@ -4,6 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const { fetchAndSaveTweets } = require("./lib/fetchTweets");
+const setupJobs = require("./jobs");
 const { connect: connectDB } = require("./lib/db");
 
 const app = express();
@@ -27,6 +28,8 @@ connectDB()
     console.log("✅ Database Connected!");
 
     fetchAndSaveTweets();
+
+    setupJobs().then(() => {});
 
     if (
       process.env.NODE_ENV === "production" ||
