@@ -29,7 +29,9 @@ connectDB()
 
     fetchAndSaveTweets();
 
-    setupJobs().then(() => {});
+    setupJobs()
+      .then(() => {})
+      .catch((err) => console.error(`Agenda Error: ${err}`));
 
     if (
       process.env.NODE_ENV === "production" ||
