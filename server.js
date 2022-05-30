@@ -4,6 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const { fetchAndSaveTweets } = require("./lib/fetchTweets");
+const setupJobs = require("./jobs");
 const { connect: connectDB } = require("./lib/db");
 
 const app = express();
@@ -16,17 +17,21 @@ app.use(express.json());
 app.options("/volunteer/*", cors());
 app.use(cors());
 
-// console.log(
-//   "⚠️Starting ",
-//   process.env.NODE_ENV == "production" ? "prod" : "staging",
-//   " Environment"
-// );
+console.log(
+  "⚠️Starting ",
+  process.env.NODE_ENV == "production" ? "prod" : "staging",
+  " Environment"
+);
 
 connectDB()
   .then(() => {
     console.log("✅ Database Connected!");
 
     fetchAndSaveTweets();
+
+    setupJobs()
+      .then(() => {})
+      .catch((err) => console.error(`Agenda Error: ${err}`));
 
     if (
       process.env.NODE_ENV === "production" ||
