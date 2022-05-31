@@ -4,6 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const { fetchAndSaveTweets } = require("./lib/fetchTweets");
+const agenda = require("./lib/agenda");
 const setupJobs = require("./jobs");
 const { connect: connectDB } = require("./lib/db");
 
@@ -33,6 +34,11 @@ connectDB()
       .then(() => {})
       .catch((err) => console.error(`Agenda Error: ${err}`));
 
+    const app = new require("express")();
+    const Agendash = require("agendash");
+
+    app.use("/", Agendash(agenda));
+
     if (
       process.env.NODE_ENV === "production" ||
       process.env.NODE_ENV == "staging"
@@ -54,5 +60,9 @@ connectDB()
         console.log("Done Deleting Tweets!");
       }, 3000);
     }
+
+    app.listen(PORT, () => {
+      console.log(`Agenda dashboard on http:localhost:${PORT}`);
+    });
   })
   .catch(console.error);

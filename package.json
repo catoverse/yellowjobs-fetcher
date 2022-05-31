@@ -18,6 +18,7 @@
   "homepage": "https://github.com/catoverse/yellowjobs-fetcher#readme",
   "dependencies": {
     "agenda": "^4.3.0",
+    "agendash": "^3.1.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "csv": "^5.5.3",
@@ -28,7 +29,7 @@
     "morgan": "^1.10.0",
     "node-cron": "^3.0.0",
     "node-fetch": "^2.6.1",
-    "static-tweets": "0.2.7",
+    "static-tweets": "^0.7.2",
     "swagger-jsdoc": "^6.0.0",
     "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2"

@@ -16,7 +16,6 @@ spec:
     # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
     - port: 4000
 
-
 ---
 apiVersion: apps/v1
 kind: Deployment
