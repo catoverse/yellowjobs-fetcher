@@ -13,7 +13,7 @@ spec:
   selector:
     app: yellowjobs-fetcher-stag
   ports:
-    # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+    - nodePort: 30164
     - port: 4000
 
 ---

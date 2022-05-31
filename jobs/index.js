@@ -21,5 +21,5 @@ module.exports = async () => {
 
   await agendaInstance.start();
 
-  await agendaInstance.every("1 days", "refetch-null-asts");
+  await agendaInstance.every("30 minutes", "refetch-null-asts");
 };
