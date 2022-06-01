@@ -5,7 +5,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server.js",
     "dev": "nodemon",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "perl -pi -e 's/var fetch.*//g' node_modules/static-tweets/build/index.js"
   },
   "repository": {
     "type": "git",
