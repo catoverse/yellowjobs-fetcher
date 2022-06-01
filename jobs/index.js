@@ -1,6 +1,6 @@
 const agendaInstance = require("../lib/agenda");
 const TweetSchema = require("../models/Tweet.schema");
-const Logger = require("./logger");
+const Logger = require("../lib/logger");
 const { fetchTweetAst } = require("static-tweets");
 
 module.exports = async () => {
