@@ -10,7 +10,7 @@ module.exports = async () => {
 
     const nullAsts = await TweetSchema.find({ tweet_ast: { $eq: null } });
 
-    const TOTAL_NULL = nullAsts.length();
+    const TOTAL_NULL = nullAsts.length;
     let TOTAL_FETCHED = 0;
     let TOTAL_FAILED = 0;
 
